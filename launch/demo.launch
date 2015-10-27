@@ -1,15 +1,21 @@
 <launch>
-  <!-- rosrun usb_cam usb_cam_node usb_cam_node/image_raw:=camera/image_raw _image_height:=<usb_cam_height> _image_width:=<usb_cam_width> -->
   <node name="camera_node"
         pkg="usb_cam"
-        type="usb_cam_node">
-    <param name="usb_cam_node/image_raw" type="string" value="camera/image_raw" />
-    <param name="image_height" type="int" value="640" />
-    <param name="image_width" type="int" value="480" />
+        type="usb_cam_node"
+        output="screen">
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
   </node>
 
   <node name="soundplay_node"
         pkg="sound_play"
         type="soundplay_node.py"
         />
+
+  <node name="face_position"
+        pkg="eye_project"
+        type="face_position_publisher.py" />
 </launch>

@@ -22,8 +22,10 @@ def main():
     rospy.sleep(1)
     soundhandle.stopAll()
 
-    close_eye_publisher.publish(Empty())
-    soundhandle.playWave('say-beep.wav')
+    close_eye_publisher.publish()
+
+    wave_path = os.path.dirname(os.path.abspath(__file__)) + "/../sounds/camera.wav"
+    soundhandle.playWave(wave_path)
     sleep(2)
 
 if __name__ == "__main__":
