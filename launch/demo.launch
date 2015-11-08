@@ -17,5 +17,5 @@
 
   <node name="face_position"
         pkg="eye_project"
-        type="face_position_publisher.py" />
+        type="face_position" />
 </launch>
