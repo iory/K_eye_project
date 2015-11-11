@@ -83,6 +83,8 @@ public:
       continuous_time.data = 0.0;
       pre_time = ros::Time::now();
       cv::imwrite(boost::str(boost::format("/tmp/face_%d.png") % save_counter++), pub_image_);
+      cv::imshow(OPENCV_WINDOW, pub_image_);
+      cv::waitKey(2);
     }
 private:
     ros::NodeHandle nh_;

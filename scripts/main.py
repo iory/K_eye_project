@@ -18,19 +18,26 @@ def sleep(t):
         pass
 
 wave_path = os.path.dirname(os.path.abspath(__file__)) + "/../sounds/camera.wav"
+next_time = None
 
 def main():
     rospy.init_node('eys_see', anonymous = True)
+    global next_time
+    next_time = rospy.Time.now()
     soundhandle = SoundClient()
-    close_eye_publisher = rospy.Publisher("close_eye", Int32, queue_size=10)
-    save_image_publisher = rospy.Publisher("save_trigger", Empty, queue_size=10)
+    close_eye_publisher = rospy.Publisher("close_eye", Int32, queue_size=100)
+    save_image_publisher = rospy.Publisher("save_trigger", Empty, queue_size=100)
     def continuous_time_callback(msg):
+        global next_time
         continuous_time = msg.data
+        if rospy.Time.now() < next_time:
+            return
+        else:
+            next_time = rospy.Time.now() + rospy.Duration(1.0)
         if continuous_time >= 1.0:
-            close_eye_publisher.publish(1)
             save_image_publisher.publish()
+            close_eye_publisher.publish(1)
             soundhandle.playWave(wave_path)
-            rospy.sleep(1.0)
 
     rospy.Subscriber("/continuous_time", Float32, continuous_time_callback)
     r = rospy.Rate(1)
