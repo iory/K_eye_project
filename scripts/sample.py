@@ -7,7 +7,7 @@ import sys
 
 from sound_play.msg import SoundRequest
 from sound_play.libsoundplay import SoundClient
-from std_msgs.msg import Empty
+from std_msgs.msg import Int32
 
 def sleep(t):
     try:
@@ -18,11 +18,11 @@ def sleep(t):
 def main():
     rospy.init_node('eys_move', anonymous = True)
     soundhandle = SoundClient()
-    close_eye_publisher = rospy.Publisher("close_eye", Empty, queue_size=10)
+    close_eye_publisher = rospy.Publisher("close_eye", Int32, queue_size=10)
     rospy.sleep(1)
     soundhandle.stopAll()
 
-    close_eye_publisher.publish()
+    close_eye_publisher.publish(Int32(data=2))
 
     wave_path = os.path.dirname(os.path.abspath(__file__)) + "/../sounds/camera.wav"
     soundhandle.playWave(wave_path)

@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
 )
 find_package(OpenCV REQUIRED)
+find_package(Boost REQUIRED)
 
 catkin_package(
 )
@@ -24,4 +25,4 @@ include_directories(
 )
 
 add_executable(face_position src/face_position_publisher.cpp)
-target_link_libraries(face_position ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+target_link_libraries(face_position ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${Boost_LIBRARIES})
