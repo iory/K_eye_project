@@ -4,6 +4,7 @@
 import rospy
 from dynamixel_msgs.msg import *
 from std_msgs.msg import Float64
+import numpy as np
 
 def main():
     rospy.init_node("test_dynamixel_motor")
@@ -14,7 +15,7 @@ def main():
 
     while True:
         angle = float(input())
-        pub1.publish(Float64(angle))
+        pub2.publish(Float64(np.deg2rad(angle)))
 
 if __name__ == "__main__":
     main()
