@@ -27,6 +27,7 @@ def main():
     soundhandle = SoundClient()
     close_eye_publisher = rospy.Publisher("close_eye", Int32, queue_size=100)
     save_image_publisher = rospy.Publisher("save_trigger", Empty, queue_size=100)
+
     def continuous_time_callback(msg):
         global next_time
         continuous_time = msg.data
@@ -35,6 +36,7 @@ def main():
         else:
             next_time = rospy.Time.now() + rospy.Duration(1.0)
         if continuous_time >= 1.0:
+            next_time = rospy.Time.now() + rospy.Duration(4.0)
             save_image_publisher.publish()
             close_eye_publisher.publish(1)
             soundhandle.playWave(wave_path)

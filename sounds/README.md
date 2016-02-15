@@ -1,3 +1,3 @@
 ```
-cp /usr/share/sounds/freedesktop/stereo/camera-shutter.oga .
+cp /usr/share/sounds/freedesktop/stereo/camera-shutter.oga ./camera.wav
 ```
