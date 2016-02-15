@@ -1,0 +1,25 @@
+rleg_j1_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: rleg_joint1
+    joint_speed: 2.0
+    motor:
+        id: 1
+        init: 512
+        min: 0
+        max: 1023
+
+rleg_j2_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: rleg_joint2
+    joint_speed: 2.0
+    motor:
+        id: 2
+        init: 512
+        min: 0
+        max: 1023
